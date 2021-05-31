@@ -1,8 +1,8 @@
 import classes from './Button.module.css';
-function Button({ text }) {
+function Button({ text, clickHandler }) {
     return (
         <>
-            <button className={classes.btn} >{text}</button>
+            <button onClick={clickHandler} className={classes.btn} >{text}</button>
         </>
     )
 }

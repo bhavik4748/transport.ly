@@ -10,7 +10,6 @@ DataService.getFlightsData = async () => {
         const res = await fetch('flights.json', DataService.headers);
         const result = await res.json();
         result['flightsByDays'] = sortFlightsByDay(result.flights);
-        console.log({result});
         return result;
     } catch (e) {
         console.error(e);
@@ -24,12 +23,11 @@ DataService.getOrders = async()=>{
         let map = new Map();
         for(const property in result){
            let c =  map.has(result[property]['destination'])?map.get(result[property]['destination']): [];
-          // console.log(c);
            c.push(property);
            map.set(result[property]['destination'], c);
         }
-        console.log({ map });
-        return map;
+       
+        return result;
     }catch(e){
         console.error(e);
     }

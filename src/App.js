@@ -7,7 +7,7 @@ import './App.css';
 function App() {
   const [flightsData, setFlightsData] = useState([]);
   const [flightsByDaysDetails, setFlightsByDaysDetails] = useState([]);
-  const [orders, setOrders] = useState(new Map());
+  const [orders, setOrders] = useState();
 
   useEffect(() => {
     async function getData() {
@@ -21,19 +21,21 @@ function App() {
     async function getOrders() {
       const orders = await DataService.getOrders();
       setOrders(orders);
-      console.log({ orders });
     }
     getOrders();
   }, [setFlightsData, setOrders, setFlightsByDaysDetails]);
 
-
+  let daysComponent = null;
+  if (flightsData.length && orders) {
+    daysComponent = (<DaysComponent
+      flightsData={flightsData}
+      flightsByDaysDetails={flightsByDaysDetails}
+      orders={orders} />)
+  }
 
   return (
     <div className="App">
-      <DaysComponent
-        flightsData={flightsData}
-        flightsByDaysDetails={flightsByDaysDetails}
-        orders={orders} />
+      {daysComponent}
     </div>
   );
 }
