@@ -10,6 +10,14 @@ function DaysComponent({ flightsData, flightsByDaysDetails, orders }) {
     const [btnFlag, setBtnFlag] = useState(false);
     const orderFlightArr = ordersFlights(orders, flightsData);
     let flightStatsByDay = null;
+    let childComponent = null;
+    let btnText;
+
+    const BtnClickHandler = (event) => {
+        event.preventDefault();
+        setBtnFlag(!btnFlag);
+    }
+
     flightStatsByDay = flightsByDaysDetails.map((x, index) => {
         return (
             <div key={index}>
@@ -18,13 +26,6 @@ function DaysComponent({ flightsData, flightsByDaysDetails, orders }) {
         )
     })
 
-    const BtnClickHandler = (event) => {
-        event.preventDefault();
-        setBtnFlag(!btnFlag);
-    }
-
-    let childComponent = null;
-    let btnText;
     if (!btnFlag) {
         childComponent = flightStatsByDay;
         btnText = 'VIEW ORDER SCHEDULE';
@@ -34,7 +35,6 @@ function DaysComponent({ flightsData, flightsByDaysDetails, orders }) {
         btnText = 'VIEW FLIGHT SCHEDULE';
     }
 
-
     return (
         <div className={classes.parentDiv}>
             <div className={classes.topDiv}>
@@ -42,7 +42,6 @@ function DaysComponent({ flightsData, flightsByDaysDetails, orders }) {
                 <span>An automated air freight scheduling service.</span>
                 <span className={classes.buttonDiv}><Button clickHandler={BtnClickHandler} text={btnText} /></span>
             </div>
-
             {childComponent}
         </div>
     )

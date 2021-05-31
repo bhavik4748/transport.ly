@@ -18,10 +18,44 @@
     background-color: white;
 }
 
-.parentDiv div {
+/* .parentDiv div {
     flex-grow: 1;
     width: 20%;
     height: 25px;
+} */
+
+.parentDiv .order {
+    flex-grow: 1;
+    width: 30%;
+    height: 25px;
+}
+
+.parentDiv .flight {
+    flex-grow: 1;
+    width: 10%;
+    height: 25px;
+    text-align: right;
+}
+
+.parentDiv .departure {
+    flex-grow: 1;
+    width: 20%;
+    height: 25px;
+    text-align: right;
+}
+
+.parentDiv .arrival {
+    flex-grow: 1;
+    width: 20%;
+    height: 25px;
+    text-align: right;
+}
+
+.parentDiv .day {
+    flex-grow: 1;
+    width: 20%;
+    height: 25px;
+    text-align: right;
 }
 
 .parentDiv div:last-child {
@@ -30,4 +64,5 @@
 
 .header {
     font-weight: bold;
+    background-color: #989c9a12;
 }

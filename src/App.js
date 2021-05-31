@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import DaysComponent from './components/DaysComponent/DaysComponent';
+import Loader from './components/UI/Loader/Loader';
 import DataService from './services/DataService';
+
 
 import './App.css';
 
@@ -25,7 +27,7 @@ function App() {
     getOrders();
   }, [setFlightsData, setOrders, setFlightsByDaysDetails]);
 
-  let daysComponent = null;
+  let daysComponent = <Loader />;
   if (flightsData.length && orders) {
     daysComponent = (<DaysComponent
       flightsData={flightsData}

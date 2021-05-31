@@ -1,4 +1,5 @@
 
+const Max_Capacity = 20;
 
 const ordersFlights = (orders, flights) => {
     let flightsMap = getFlightMap(flights);
@@ -31,11 +32,21 @@ const getFlightMap = (flights) => {
     let map = new Map();
     for (let x of flights) {
         let arr = map.has(x['arrival_city']) ? map.get(x['arrival_city']) : [];
-        x['remCap'] = 20;
+        x['remCap'] = Max_Capacity;
         arr.push(x);
         map.set(x['arrival_city'], arr);
     }
     return map;
 }
 
-export { ordersFlights }
+const sortFlightsByDay = (flights) => {
+    let days = new Array(2).fill([]);
+    for (let x of flights) {
+        const t = [...days[x.day - 1]];
+        t.push(x);
+        days[x.day - 1] = [...t];
+    }
+    return days;
+}
+
+export { ordersFlights, sortFlightsByDay }

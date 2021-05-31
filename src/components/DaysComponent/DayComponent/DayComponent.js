@@ -4,7 +4,7 @@ function DayComponent({ flights, day }) {
     let flightDetails = null;
     let flightLastIndex = flights.length - 1;
     flightDetails = flights.map((x, index) => {
-        let classComb =  [classes.parentDiv, (flightLastIndex === index) ? classes.lastRow : ' '].join(' ')
+        let classComb = [classes.parentDiv, (flightLastIndex === index) ? classes.lastRow : ' '].join(' ')
         return (
             <div className={classComb} key={x.flight_number}>
                 <div>{x.flight_number}</div>

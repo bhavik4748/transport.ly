@@ -1,3 +1,5 @@
+import { sortFlightsByDay } from './Utils';
+
 const DataService = {}
 
 DataService.headers = {
@@ -16,31 +18,14 @@ DataService.getFlightsData = async () => {
     }
 }
 
-DataService.getOrders = async()=>{
-    try{
+DataService.getOrders = async () => {
+    try {
         const res = await fetch('orders.json', DataService.headers);
         const result = await res.json();
-        let map = new Map();
-        for(const property in result){
-           let c =  map.has(result[property]['destination'])?map.get(result[property]['destination']): [];
-           c.push(property);
-           map.set(result[property]['destination'], c);
-        }
-       
         return result;
-    }catch(e){
+    } catch (e) {
         console.error(e);
     }
-}
-
-function sortFlightsByDay(flights) {
-    let days = new Array(2).fill([]);
-    for(let x of flights){
-        const t = [...days[x.day - 1]];
-        t.push(x);
-        days[x.day - 1 ] = [...t];
-    }
-    return days;
 }
 
 export default DataService;
