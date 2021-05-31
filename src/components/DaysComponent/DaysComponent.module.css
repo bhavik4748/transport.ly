@@ -1,0 +1,22 @@
+.parentDiv{
+    margin: 30px 20px;
+    background-color: #eff1f2;
+}
+
+.topDiv{
+    padding-top: 20px;
+}
+
+.companyLabel{
+    display: inline-block;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 5px 10px;
+
+}
+
+.buttonDiv{
+    display: inline-block;
+    float: right;
+    padding: 5px 10px;
+}

@@ -1,23 +1,39 @@
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
+import DaysComponent from './components/DaysComponent/DaysComponent';
+import DataService from './services/DataService';
+
 import './App.css';
 
 function App() {
+  const [flightsData, setFlightsData] = useState([]);
+  const [flightsByDaysDetails, setFlightsByDaysDetails] = useState([]);
+  const [orders, setOrders] = useState(new Map());
+
+  useEffect(() => {
+    async function getData() {
+      const { flights, flightsByDays } = await DataService.getFlightsData();
+      setFlightsData(flights);
+      setFlightsByDaysDetails(flightsByDays);
+
+    }
+    getData();
+
+    async function getOrders() {
+      const orders = await DataService.getOrders();
+      setOrders(orders);
+      console.log({ orders });
+    }
+    getOrders();
+  }, [setFlightsData, setOrders, setFlightsByDaysDetails]);
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <DaysComponent
+        flightsData={flightsData}
+        flightsByDaysDetails={flightsByDaysDetails}
+        orders={orders} />
     </div>
   );
 }
